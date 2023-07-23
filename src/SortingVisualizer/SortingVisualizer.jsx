@@ -27,26 +27,6 @@ export default class SortingVisualizer extends React.Component {
         const animations = algo.getMergeSortAnimations(this.state.array);
         for (let i = 0; i < animations.length; i++) {
             const arrayBars = document.getElementsByClassName('array-bar');
-            // if (i % 2 == 0) {
-            //     const [i1, i2] = animations[i];
-            //     const style1 = arrayBars[i1].style;
-            //     const style2 = arrayBars[i2].style;
-            //     setTimeout(() => {
-            //         style1.backgroundColor = 'red';
-            //         style2.backgroundColor = 'red';
-            //     }, i * 20);
-            // }
-            // else {
-            //     const [ic, i1, i2] = animations[i];
-            //     const styleC = arrayBars[ic].style;
-            //     const style1 = arrayBars[i1].style;
-            //     const style2 = arrayBars[i2].style;
-            //     setTimeout(() => {
-            //         styleC.height = `${style1.height}px`;
-            //         style1.backgroundColor = 'darkgreen';
-            //         style2.backgroundColor = 'darkgreen';
-            //     }, i * 10);
-            // }
             const [ic, i1, i2, newHeight] = animations[i];
             const styleC = arrayBars[ic].style;
             const style1 = arrayBars[i1].style;

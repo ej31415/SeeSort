@@ -23,7 +23,6 @@ function merge(array, start, middle, end, tempArray, animations) {
     let j = middle + 1;
     let k = start;
     while (i <= middle && j <= end) {
-        // animations.push([i, j]);
         if (tempArray[i] < tempArray[j]) {
             animations.push([k, i, j, tempArray[i]]);
             array[k] = tempArray[i];
@@ -38,14 +37,12 @@ function merge(array, start, middle, end, tempArray, animations) {
         }
     }
     while (i <= middle) {
-        // animations.push([i, i]);
         animations.push([k, i, i, tempArray[i]]);
         array[k] = tempArray[i];
         i++;
         k++;
     }
     while (j <= end) {
-        // animations.push([j, j]);
         animations.push([k, j, j, tempArray[j]]);
         array[k] = tempArray[j];
         j++;
