@@ -21,6 +21,10 @@ export default class SortingVisualizer extends React.Component {
             array.push(randomIntFromIntervals(5, 700));
         }
         this.setState({array});
+        const arrayBars = document.getElementsByClassName('array-bar');
+        for (let i = 0; i < arrayBars.length; i++) {
+            arrayBars[i].style.backgroundColor = 'darkseagreen';
+        }
     }
 
     mergeSort() {
@@ -34,15 +38,15 @@ export default class SortingVisualizer extends React.Component {
             setTimeout(() => {
                 style1.backgroundColor = 'red';
                 style2.backgroundColor = 'red';
-            }, i * 9);
+            }, i * 6);
             
             setTimeout(() => {
                 styleC.height = `${newHeight}px`;
-            }, i * 9 + 3);
+            }, i * 6 + 2);
             setTimeout(() => {
                 style1.backgroundColor = 'darkgreen';
                 style2.backgroundColor = 'darkGreen';
-            }, i * 9 + 6);
+            }, i * 6 + 4);
         }
     }
 
@@ -64,7 +68,7 @@ export default class SortingVisualizer extends React.Component {
         return (
             <div className='array-container'>
                 {array.map((value, idx) => (
-                    <div className="array-bar" key={idx} style={{height: `${value}px`}}>
+                    <div className="array-bar" key={idx} style={{backgroundColor: 'darkseagreen', height: `${value}px`}}>
                     </div>
                 ))}
                 <div className="menu">
