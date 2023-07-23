@@ -2,6 +2,7 @@
     /* position: absolute;
     left: 100px; */
     position: static;
+    padding-bottom: 5px;
 }
 
 .array-bar {
@@ -9,4 +10,24 @@
     display: inline-block;
     margin: 0 1px;
     vertical-align: top;
+}
+
+#navbar {
+    background-color: aquamarine;
+    vertical-align: bottom;
+}
+
+.container {
+    padding: 10px;
+}
+
+button {
+    background-color: royalblue;
+    padding: 5px 8px;
+    border-radius: 25px;
+    display: inline;
+}
+
+button:hover {
+    background-color: antiquewhite;
 }
