@@ -49,3 +49,29 @@ function merge(array, start, middle, end, tempArray, animations) {
         k++;
     }
 }
+
+export function getBubbleSortAnimations(array) {
+    return bubbleSortHelper(array);
+}
+
+function bubbleSortHelper(array) {
+    const animations = [];
+    for (let i = 0; i < array.length - 1; i++) {
+        for (let j = 0; j < array.length - 1 - i; j++) {
+            let animation = [j, j + 1, array[j], array[j + 1]];
+            let swap = false;
+            if (array[j] > array[j + 1]) {
+                let temp = array[j];
+                array[j] = array[j + 1];
+                array[j + 1] = temp;
+                swap = true;
+            }
+            animation.push(swap);
+            animation.push(false);
+            animations.push(animation);
+            console.log(animation);
+        }
+        animations[animations.length - 1][5] = true;
+    }
+    return animations;
+}
