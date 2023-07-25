@@ -75,3 +75,26 @@ function bubbleSortHelper(array) {
     }
     return animations;
 }
+
+export function getSelectionSortAnimations(array) {
+    return selectionSortHelper(array);
+}
+
+function selectionSortHelper(array) {
+    const animations = [];
+    for (let i = 0; i < array.length; i++) {
+        let minI = i;
+        for (let j = i; j < array.length; j++) {
+            if (array[j] < array[minI]) {
+                minI = j;
+            }
+            animations.push([i, j, array[i], array[minI], false]);
+        }
+        animations.pop();
+        animations.push([i, minI, array[i], array[minI], true]);
+        let temp = array[i];
+        array[i] = array[minI];
+        array[minI] = temp;
+    }
+    return animations;
+}
