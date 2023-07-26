@@ -98,3 +98,22 @@ function selectionSortHelper(array) {
     }
     return animations;
 }
+
+export function getInsertionSortAnimations(array) {
+    return insertionSortHelper(array);
+}
+
+function insertionSortHelper(array) {
+    const animations = [];
+    for (let i = 1; i < array.length; i++) {
+        let j = i;
+        while (j > 0 && array[j] < array[j - 1]) {
+            animations.push([j, j - 1, array[j], array[j - 1]]);
+            let temp = array[j];
+            array[j] = array[j - 1];
+            array[j - 1] = temp;
+            j--;
+        }
+    }
+    return animations;
+}

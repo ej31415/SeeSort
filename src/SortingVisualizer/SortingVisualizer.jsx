@@ -108,13 +108,35 @@ export default class SortingVisualizer extends React.Component {
             setTimeout(() => {
                 if (swap) {
                     style1.backgroundColor = 'darkgreen';
-                    if (i1 != i2) {
+                    if (i1 !== i2) {
                         style2.backgroundColor = 'darkseagreen';
                     }
                 }
                 else {
                     style2.backgroundColor = 'darkseagreen';
                 }
+            }, i * 3 + 2);
+        }
+    }
+
+    insertionSort() {
+        const animations = algo.getInsertionSortAnimations(this.state.array);
+        for (let i = 0; i < animations.length; i++) {
+            const arrayBars = document.getElementsByClassName('array-bar');
+            const [i1, i2, nH1, nH2] = animations[i];
+            const style1 = arrayBars[i1].style;
+            const style2 = arrayBars[i2].style;
+            setTimeout(() => {
+                style1.backgroundColor = 'red';
+                style2.backgroundColor = 'red';
+            }, i * 3);
+            setTimeout(() => {
+                style1.height = `${nH2}px`;
+                style2.height = `${nH1}px`;
+            }, i * 3 + 1);
+            setTimeout(() => {
+                style1.backgroundColor = 'darkgreen';
+                style2.backgroundColor = 'darkgreen';
             }, i * 3 + 2);
         }
     }
@@ -140,6 +162,7 @@ export default class SortingVisualizer extends React.Component {
                         <button onClick={() => this.heapSort()}>Heap Sort</button>
                         <button onClick={() => this.bubbleSort()}>Bubble Sort</button>
                         <button onClick={() => this.selectionSort()}>Selection Sort</button>
+                        <button onClick={() => this.insertionSort()}>Insertion Sort</button>
                     </div>
                 </nav>
             </div>
