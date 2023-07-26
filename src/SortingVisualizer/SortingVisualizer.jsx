@@ -166,7 +166,7 @@ export default class SortingVisualizer extends React.Component {
             <div body>
                 <div className='array-container'>
                     {array.map((value, idx) => (
-                        <div className="array-bar" key={idx} style={{backgroundColor: 'darkseagreen', height: `${value}px`}}>
+                        <div className="array-bar" key={idx} style={{backgroundColor: UNSORTED_COLOR, height: `${value}px`}}>
                         </div>
                     ))}
                 </div>
