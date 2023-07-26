@@ -129,6 +129,7 @@ export default class SortingVisualizer extends React.Component {
                     }
                 }
                 else {
+                    style1.backgroundColor = UNSORTED_COLOR;
                     style2.backgroundColor = UNSORTED_COLOR;
                 }
             }, i * 3 + 2);

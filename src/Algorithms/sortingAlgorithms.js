@@ -90,7 +90,7 @@ function selectionSortHelper(array) {
             }
             animations.push([i, j, array[i], array[minI], false]);
         }
-        animations.pop();
+        // animations.pop();
         animations.push([i, minI, array[i], array[minI], true]);
         let temp = array[i];
         array[i] = array[minI];
