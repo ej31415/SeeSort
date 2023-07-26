@@ -2,6 +2,11 @@ import React from 'react';
 import * as algo from '../Algorithms/sortingAlgorithms.js';
 import './SortingVisualizer.css';
 
+const UNSORTED_COLOR = 'darkseagreen';
+const TEMP_COLOR = 'red';
+const SORT_COLOR = 'gold';
+const COMPLETED_COLOR = 'darkgreen';
+
 export default class SortingVisualizer extends React.Component {
     constructor(props) {
         super(props);
@@ -23,8 +28,17 @@ export default class SortingVisualizer extends React.Component {
         this.setState({array});
         const arrayBars = document.getElementsByClassName('array-bar');
         for (let i = 0; i < arrayBars.length; i++) {
-            arrayBars[i].style.backgroundColor = 'darkseagreen';
+            arrayBars[i].style.backgroundColor = UNSORTED_COLOR;
         }
+    }
+
+    completeSort(animations) {
+        const arrayBars = document.getElementsByClassName('array-bar');
+        setTimeout(() => {
+            for (let i = 0; i < arrayBars.length; i++) {
+                arrayBars[i].style.backgroundColor = COMPLETED_COLOR;
+            }
+        }, animations.length * 3 + 250);
     }
 
     mergeSort() {
@@ -36,18 +50,19 @@ export default class SortingVisualizer extends React.Component {
             const style1 = arrayBars[i1].style;
             const style2 = arrayBars[i2].style;
             setTimeout(() => {
-                style1.backgroundColor = 'red';
-                style2.backgroundColor = 'red';
+                style1.backgroundColor = TEMP_COLOR;
+                style2.backgroundColor = TEMP_COLOR;
             }, i * 3);
             
             setTimeout(() => {
                 styleC.height = `${newHeight}px`;
             }, i * 3 + 1);
             setTimeout(() => {
-                style1.backgroundColor = 'darkgreen';
-                style2.backgroundColor = 'darkGreen';
+                style1.backgroundColor = SORT_COLOR;
+                style2.backgroundColor = SORT_COLOR;
             }, i * 3 + 2);
         }
+        this.completeSort(animations);
     }
 
     quickSort() {
@@ -66,8 +81,8 @@ export default class SortingVisualizer extends React.Component {
             const style1 = arrayBars[i1].style;
             const style2 = arrayBars[i2].style;
             setTimeout(() => {
-                style1.backgroundColor = 'red';
-                style2.backgroundColor = 'red';
+                style1.backgroundColor = TEMP_COLOR;
+                style2.backgroundColor = TEMP_COLOR;
             }, i * 3);
             setTimeout(() => {
                 if (swap) {
@@ -77,15 +92,16 @@ export default class SortingVisualizer extends React.Component {
             }, i * 3 + 1);
             setTimeout(() => {
                 if (last){    
-                    style1.backgroundColor = 'darkseagreen';
-                    style2.backgroundColor = 'darkgreen';
+                    style1.backgroundColor = UNSORTED_COLOR;
+                    style2.backgroundColor = SORT_COLOR;
                 }
                 else {
-                    style1.backgroundColor = 'darkseagreen';
-                    style2.backgroundColor = 'darkseagreen';
+                    style1.backgroundColor = UNSORTED_COLOR;
+                    style2.backgroundColor = UNSORTED_COLOR;
                 }
             }, i * 3 + 2);
         }
+        this.completeSort(animations);
     }
 
     selectionSort() {
@@ -96,8 +112,8 @@ export default class SortingVisualizer extends React.Component {
             const style1 = arrayBars[i1].style;
             const style2 = arrayBars[i2].style;
             setTimeout(() => {
-                style1.backgroundColor = 'red';
-                style2.backgroundColor = 'red';
+                style1.backgroundColor = TEMP_COLOR;
+                style2.backgroundColor = TEMP_COLOR;
             }, i * 3);
             setTimeout(() => {
                 if (swap) {
@@ -107,16 +123,17 @@ export default class SortingVisualizer extends React.Component {
             }, i * 3 + 1);
             setTimeout(() => {
                 if (swap) {
-                    style1.backgroundColor = 'darkgreen';
+                    style1.backgroundColor = SORT_COLOR;
                     if (i1 !== i2) {
-                        style2.backgroundColor = 'darkseagreen';
+                        style2.backgroundColor = UNSORTED_COLOR;
                     }
                 }
                 else {
-                    style2.backgroundColor = 'darkseagreen';
+                    style2.backgroundColor = UNSORTED_COLOR;
                 }
             }, i * 3 + 2);
         }
+        this.completeSort(animations);
     }
 
     insertionSort() {
@@ -127,18 +144,19 @@ export default class SortingVisualizer extends React.Component {
             const style1 = arrayBars[i1].style;
             const style2 = arrayBars[i2].style;
             setTimeout(() => {
-                style1.backgroundColor = 'red';
-                style2.backgroundColor = 'red';
+                style1.backgroundColor = TEMP_COLOR;
+                style2.backgroundColor = TEMP_COLOR;
             }, i * 3);
             setTimeout(() => {
                 style1.height = `${nH2}px`;
                 style2.height = `${nH1}px`;
             }, i * 3 + 1);
             setTimeout(() => {
-                style1.backgroundColor = 'darkgreen';
-                style2.backgroundColor = 'darkgreen';
+                style1.backgroundColor = SORT_COLOR;
+                style2.backgroundColor = SORT_COLOR;
             }, i * 3 + 2);
         }
+        this.completeSort(animations);
     }
 
     render() {
