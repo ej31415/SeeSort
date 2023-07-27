@@ -1,3 +1,9 @@
+function swap(array, i1, i2) {
+    let temp = array[i1];
+    array[i1] = array[i2];
+    array[i2] = temp;
+}
+
 export function getMergeSortAnimations(array) {
     const animations = [];
     if (array.length <= 1) {
@@ -50,6 +56,38 @@ function merge(array, start, middle, end, tempArray, animations) {
     }
 }
 
+export function getQuickSortAnimations(array) {
+    let animations = [];
+    quickSortHelper(array, 0, array.length - 1, animations);
+    return animations;
+}
+
+function quickSortHelper(array, l, r, animations) {
+    if (l > r) {
+        return;
+    }
+    let partitionIdx = partition(array, l, r, animations);
+    quickSortHelper(array, l, partitionIdx - 1, animations);
+    quickSortHelper(array, partitionIdx + 1, r, animations);
+}
+
+function partition(array, l, r, animations) {
+    let partitionVal = array[r];
+    let partitionIdx = l;
+    for (let i = l; i < r; i++) {
+        let change = false;
+        if (array[i] < partitionVal) {
+            swap(array, i, partitionIdx);
+            partitionIdx++;
+            change = true;
+        }
+        animations.push([i, r, partitionIdx, array[i], array[partitionIdx], change, false]);
+    }
+    swap(array, r, partitionIdx);
+    animations.push([r, r, partitionIdx, partitionVal, array[partitionIdx], true, true]);
+    return partitionIdx;
+}
+
 export function getBubbleSortAnimations(array) {
     return bubbleSortHelper(array);
 }
@@ -90,7 +128,6 @@ function selectionSortHelper(array) {
             }
             animations.push([i, j, array[i], array[minI], false]);
         }
-        // animations.pop();
         animations.push([i, minI, array[i], array[minI], true]);
         let temp = array[i];
         array[i] = array[minI];
