@@ -97,14 +97,12 @@ function bubbleSortHelper(array) {
     for (let i = 0; i < array.length - 1; i++) {
         for (let j = 0; j < array.length - 1 - i; j++) {
             let animation = [j, j + 1, array[j], array[j + 1]];
-            let swap = false;
+            let change = false;
             if (array[j] > array[j + 1]) {
-                let temp = array[j];
-                array[j] = array[j + 1];
-                array[j + 1] = temp;
-                swap = true;
+                swap(array, j, j + 1);
+                change = true;
             }
-            animation.push(swap);
+            animation.push(change);
             animation.push(false);
             animations.push(animation);
             console.log(animation);
@@ -129,9 +127,7 @@ function selectionSortHelper(array) {
             animations.push([i, j, array[i], array[minI], false]);
         }
         animations.push([i, minI, array[i], array[minI], true]);
-        let temp = array[i];
-        array[i] = array[minI];
-        array[minI] = temp;
+        swap(array, i, minI);
     }
     return animations;
 }
@@ -146,9 +142,7 @@ function insertionSortHelper(array) {
         let j = i;
         while (j > 0 && array[j] < array[j - 1]) {
             animations.push([j, j - 1, array[j], array[j - 1]]);
-            let temp = array[j];
-            array[j] = array[j - 1];
-            array[j - 1] = temp;
+            swap(array, j, j - 1);
             j--;
         }
     }
