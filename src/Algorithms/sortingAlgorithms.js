@@ -88,6 +88,51 @@ function partition(array, l, r, animations) {
     return partitionIdx;
 }
 
+export function getHeapSortAnimations(array) {
+    const animations = [];
+    buildMaxHeap(array, animations);
+    heapSortHelper(array, animations);
+    return animations;
+}
+
+function heapify(array, i, r, animations) {
+    let idx = i;
+    while (2 * idx + 1 < r) {
+        let c1 = array[2 * idx + 1];
+        let c2 = (2 * idx + 2 < r) ? array[2 * idx + 2] : Number.MIN_SAFE_INTEGER;
+        if (c1 > c2 && c1 > array[idx]) {
+            animations.push([idx, 2*idx+1, array[idx], array[2*idx+1]]);
+            swap(array, idx, 2 * idx + 1);
+            idx = 2 * idx + 1;
+        }
+        else if (c2 >= c1 && c2 > array[idx]) {
+            animations.push([idx, 2*idx+2, array[idx], array[2*idx+2]]);
+            swap(array, idx, 2 * idx + 2);
+            idx = 2 * idx + 2;
+        }
+        else {
+            return;
+        }
+    }
+}
+
+function buildMaxHeap(array, animations) {
+    let lastLeafIdx = Math.floor(array.length / 2 - 1);
+    for (let i = lastLeafIdx; i > -1; i--) {
+        heapify(array, i, array.length, animations);
+    }
+}
+
+function heapSortHelper(array, animations) {
+    let idx = array.length - 1;
+    while (idx > -1) {
+        animations.push([idx, 0, array[idx], array[0]]);
+        swap(array, idx, 0);
+        heapify(array, 0, idx, animations);
+        idx--;
+    }
+}
+
 export function getBubbleSortAnimations(array) {
     return bubbleSortHelper(array);
 }

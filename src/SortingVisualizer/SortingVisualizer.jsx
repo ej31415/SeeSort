@@ -94,7 +94,26 @@ export default class SortingVisualizer extends React.Component {
     }
 
     heapSort() {
-
+        const animations = algo.getHeapSortAnimations(this.state.array);
+        for (let i = 0; i < animations.length; i++) {
+            const arrayBars = document.getElementsByClassName('array-bar');
+            const [i1, i2, nH1, nH2] = animations[i];
+            const style1 = arrayBars[i1].style;
+            const style2 = arrayBars[i2].style;
+            setTimeout(() => {
+                style1.backgroundColor = TEMP_COLOR;
+                style2.backgroundColor = TEMP_COLOR;
+            }, i * 3);
+            setTimeout(() => {
+                style1.height = `${nH2}px`;
+                style2.height = `${nH1}px`;
+            }, i * 3 + 1);
+            setTimeout(() => {
+                style1.backgroundColor = SORT_COLOR;
+                style2.backgroundColor = SORT_COLOR;
+            }, i * 3 + 2);
+        }
+        this.completeSort(animations);
     }
 
     bubbleSort() {
