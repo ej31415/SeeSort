@@ -81,10 +81,10 @@ function partition(array, l, r, animations) {
             partitionIdx++;
             change = true;
         }
-        animations.push([i, r, partitionIdx, array[i], array[partitionIdx], change, false]);
+        animations.push([i, r, partitionIdx, array[i], array[partitionIdx], change]);
     }
     swap(array, r, partitionIdx);
-    animations.push([r, r, partitionIdx, partitionVal, array[partitionIdx], true, true]);
+    animations.push([r, r, partitionIdx, partitionVal, array[partitionIdx], true]);
     return partitionIdx;
 }
 

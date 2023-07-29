@@ -69,7 +69,7 @@ export default class SortingVisualizer extends React.Component {
         const animations = algo.getQuickSortAnimations(this.state.array);
         for (let i = 0; i < animations.length; i++) {
             const arrayBars = document.getElementsByClassName('array-bar');
-            const [idx, r, partitionIdx, nH1, nH2, swap, endPartition] = animations[i];
+            const [idx, r, partitionIdx, nH1, nH2, swap] = animations[i];
             const styleI = arrayBars[idx].style;
             const styleR = arrayBars[r].style;
             const styleP = arrayBars[partitionIdx].style;
